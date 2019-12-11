@@ -298,12 +298,19 @@ Created on Wed Dec 11 17:39:21 2019
 
 #29
 star = 1
-string_val = '     *'
+space = 4
+space_val = ' '
+string_val = '*'
+
 for i in range(6):
-    for j in range(star):
-        print("*", end='')
-    star += 1
-    print()
+    if i == 0:
+        print(space_val * 5 + string_val + space_val * 5)
+    else:
+        sum_val = space_val * space + string_val * star 
+        print(sum_val + string_val + sum_val[::-1])
+        star += 1
+        space -= 1
+    
 
 
 #1일때 별 1개
