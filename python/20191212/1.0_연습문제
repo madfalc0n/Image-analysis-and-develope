@@ -1,0 +1,306 @@
+2. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+list_1 = [0, 3, 1, 7, 5, 0, 5, 8, 0, 4] 
+def quiz_2(list_data):   
+    a = set(list_data)   
+    return (list(a)[1:5])
+
+quiz_2(list_1)
+
+? {1, 3, 4, 5}    ? [1, 3, 4, 5] ? {3, 1, 7, 5} ? {0, 3, 1, 7}    ? [3, 1, 7, 5]
+
+
+3. 각 자료구조에 대한 설명이다. (가) ~ (라)에 알맞은 용어를 쓰시오. 
+(가) 나중에 넣은 데이터를 먼저 반환하도록 설계된 메모리 구조로, LIFO(Last In First Out)로 구현된다. 
+(나) 먼저 넣은 데이터를 먼저 반환하도록 설계된 메모리 구조로, FIFO(First In First Out)로 구현된다. 
+(다) 값의 변경이 불가능하며, 리스트의 연산, 인덱싱, 슬라이싱 등을 동일하게 사용한다. 
+(라) 값을 순서 없이 저장하면서 중복을 불허한다.
+
+4. 다음과 같이 딕셔너리가 선언되었을 때, 각 코드의 실행 결과를 쓰시오.
+>>> country_code={"America":1,"Korea":82,"China":86,"Japan":81}
+
+>>> country_code.values()
+
+>>> country_code
+
+>>> country_code.keys()
+
+>>> 85 in country_code.values()
+
+>>> "Korea" in country_code.keys()
+
+
+6. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+def delete_a_list_element(list_data, element_value):    
+    if element_value in list_data:        
+        list_data.remove(element_value)        
+        return list_data   
+    else:        
+        return "False"
+
+list_data = ['a', 1, 'gachon', '2016.0'] 
+element = float(2016) 
+result = delete_a_list_element(list_data, element) 
+print(result)
+
+? Error           ? ['a', 1, 'gachon'] ? None ? False           ? ['a', 1, 'gachon', '2016.0']
+
+7. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+def add_number(original_list):    
+    original_list += [1]
+
+mylist = [1, 2, 3, 4] 
+add_number(mylist) 
+print(set(mylist))
+
+
+8. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+a = [3, "apple", 2016, 4] 
+b = a.pop(0) 
+c = a.pop(1) 
+print(b + c)
+
+? 2019    ? Error     ? 2010     ? 6     ? apple
+
+
+9. 다음과 같이 코드를 작성했을 때, 예측되는 실행 결과를 쓰시오. 
+def week_seven(sentence1):    
+    cells = set(sentence1.replace(' ','').lower())    
+    return cells 
+
+sentence_a = "The quick brown fox jumps over the lazy dog" 
+sentence_b = "I love you"    
+print(len(week_seven(sentence_a)-week_seven(sentence_b)))
+
+
+10. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+tuple_1 = (1, 2, 3) 
+tuple_2 = (4, 5, 6)
+
+def quiz_1(data_1, data_2):       
+    result = []    
+    for i in (tuple_1 + tuple_2):        
+        result.append(i)        
+    return (result)
+
+print(quiz_1(tuple_1, tuple_2))
+
+? [1, 2, 3, 4, 5, 6]    ? [(1, 2, 3) (4, 5, 6)]        ? (1, 2, 3) (4, 5, 6) ? [(1, 2, 3, 4, 5, 6)]         ? (1, 2, 3, 4, 5, 6)
+ 
+11. 다음 코드의 실행 결과를 쓰시오. 
+dict_1 = {2:1, 4:2, 6:3, 8:4, 10:6}
+dict_keys = list(dict_1.keys()) 
+dict_values = list(dict_1.values())
+dict_2 = dict()
+for i in range(len(dict_keys)):    
+    dict_2[dict_values[i]] = dict_keys[i]
+print(dict_2[2])
+
+
+12. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+animal = ['cat', 'snake', 'monkey', 'ant', 'spider'] 
+legs= [4, 0, 2, 4, 8] 
+animal_legs_dict = {} 
+for i in range(len(animal)):    
+    animal_legs_dict[legs[i]] = animal[i] 
+
+animal_legs_dict['ant'] = 6 
+print(animal_legs_dict)
+
+? {0: 'snake', 8: 'spider', 2: 'monkey', 6: 'ant', 4: 'cat'} 
+? {0: 'snake', 8: 'spider', 2: 'monkey', 4: 'ant', 4: 'cat', 'ant': 6} 
+? {0: 'snake', 8: 'spider', 2: 'monkey', 4: 'ant', 'ant': 6} 
+? {4: 'ant', 0: 'snake', 2: 'monkey', 8: 'spider', 'ant': 6} 
+? {0: 'snake', 8: 'spider', 2: 'monkey', 6: 'ant'}
+
+
+13. 다음 코드의 실행 결과를 쓰시오. 
+t = (1, 2, 3) 
+print(t + t) 
+print(t * 2) 
+print(t, t)
+
+14. 다음 코드의 실행 결과를 쓰시오. 
+Mydict = {'1' : 1, '2' : 2} 
+Copy = Mydict Mydict['1'] = 5 
+result= Mydict['1'] + Copy['1'] 
+print(result)
+
+
+15. 다음 코드의 실행 결과를 쓰시오. 
+sentence = list('You Love Me?') 
+result = '' 
+for i in range(len(sentence)):    
+    if i % 3 == 0:        
+        result += sentence.pop()    
+    else:        
+        result += sentence.pop(0) 
+print(result)
+
+
+
+16. 다음 코드의 실행 결과를 쓰시오. 
+number = [5, 6, 7, 8, 9, 1, 2, 3, 4] 
+result = [ ] result.append(number.pop(0)) 
+result.append(number.pop()) 
+result.append(number.pop(1)) 
+result.append(number.pop()) 
+result.append(number.pop(0)) 
+print(number[0]+result[-1])
+
+
+17. 다음 코드의 실행 결과를 쓰시오. 
+a = list(range(10))
+a.append(a[3]) 
+a.pop(a[3]) 
+a.insert(3, a[-1]) 
+a.pop( ) 
+print(a)
+
+
+18. 다음 코드의 실행 결과를 쓰시오. 
+box = [1,'red',3,(),[ ],None] 
+print(len(box))
+
+19. 다음 코드의 실행 결과를 쓰시오. 
+data_1 = {'one' : (1,2,3,4,5,6), 'two' : [1,2,3,4,5,6], 'three' : {'four' : 4, 'five' : 5}}
+for k in ['one','two','three']:    
+    try:        
+        print(data_1[k][:1])    
+    except TypeError:
+        print("error")
+
+for k in ['one', 'two','three']:
+     try:
+        data_1[k][-1] = "a"
+        print(data_1[k][-1])
+    except TypeError :
+        print("error")
+
+20. 다음 코드의 실행 결과를 쓰시오. 
+class_category = ["A", "B", "C", "D"]
+student_category = ["Sam", "Sarah", "Jane", "John"]
+class_student_cate = { } 
+for i in range(len(class_category)):
+    class_student_cate[class_category[i]] = student_category[i] 
+
+print(class_student_cate)
+
+####################################################################
+1. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+mylist = ['apple' ,'banana', 'grape']
+result = list(enumerate(mylist))
+print(result)
+
+? [('apple', 1), ('banana', 2), ('grape', 3)] 
+? [(1, 'apple'), (2, 'banana'), (3, 'grape')] 
+? [(0, 'apple'), (1, 'banana'), (2, 'grape')] 
+? [('apple', 0), ('banana', 1), ('grape', 2)] 
+? [('grape',0), ('banana',1), ('apple',2)]
+
+
+2. 다음과 같이 코드를 작성했을 때, 실행 결과로 알맞은 것은? 
+cat_song = "my cat has blue eyes, my cat is cute" 
+print({i:j for j,i in enumerate(cat_song.split())})
+
+? {0: 'my', 1: 'cat', 2: 'has', 3: 'blue', 4: 'eyes,', 5: 'my', 6: 'cat', 7: 'is', 8: 'cute'} 
+? {'my': 0, 'cat': 1, 'has': 2, 'blue': 3, 'eyes,': 4, 'my': 5, 'cat': 6, 'is': 7, 'cute': 8} 
+? {0: 'my', 1: 'cat', 2: 'has', 3: 'blue', 4: 'eyes,', 5: 'is', 6: 'cute'} 
+? {'my': 5, 'cat': 6, 'has': 2, 'blue': 3, 'eyes,': 4, 'is': 7, 'cute': 8} 
+? 오류
+
+
+3. 다음과 같이 코드를 작성했을 때, 예측되는 실행 결과를 쓰시오
+colors = ['orange', 'pink', 'brown', 'black', 'white'] 
+result = '&'.join(colors) 
+print(result)
+
+
+4. 다음 코드의 실행 결과를 쓰시오. 
+user_dict = {} 
+user_list = ["students","superuser", "professor", "employee"] 
+for value_1, value_2 in enumerate(user_list):    
+    user_dict[value_2] = value_1 
+print(user_dict)
+
+
+5. 파이썬 셸에서 다음과 같이 코드를 작성했을 때, 각각의 실행 결과를 쓰시오.
+>>> result = [i for i in range(10) if i%2 == 0] 
+>>> print(result)
+
+>>> items = 'zero one two three'.split("two") 
+>>> result =[i for i in range(10)] 
+>>> print(result)
+
+>>> items ='zero one two three'.split() 
+>>> print(items)
+
+>>> example = 'cs50.gachon.edu' 
+>>> subdomain, domain, tld = example.split('.') 
+>>> print(subdomain)
+
+
+6. 다음 코드의 실행 결과를 쓰시오. 
+animal = ['Fox', 'Dog', 'Cat', 'Monkey', 'Horse', 'Panda', 'Owl'] 
+print([ani for ani in animal if 'o' not in ani])
+
+
+7. 다음 코드의 실행 결과를 쓰시오. 
+name = "Hanbit University" 
+student = ["Hong", "Gil", "Dong"] 
+split_name = name.split() 
+join_student = ''.join(student) 
+print(join_student[-4:] + split_name[1])
+
+
+8. 다음 코드의 실행 결과를 쓰시오. 
+kor_score = [49, 79, 20, 100, 80] 
+math_score = [43, 59, 85, 30, 90] 
+eng_score = [49, 79, 48, 60, 100] 
+midterm_score = [kor_score, math_score, eng_score] 
+print(midterm_score[0][2])
+
+9. 다음과 같이 코드를 작성했을 때, 예측되는 실행 결과를 쓰시오. 
+>>> a = [1, 2, 3] 
+>>> b = [4, 5, ] 
+>>> c = [7, 8, 9] 
+>>> print([[sum(k), len(k)] for k in zip(a, b, c)])
+
+① [[6, 3], [9, 2], [24, 3]] 
+② [[12, 3], [15, 3]] 
+③ [[12, 3], [15, 3], [17, 3]] 
+④ 오류 
+⑤ [[12, 3], [15, 3], [12, 2]] 
+ 
+10. 다음 코드의 실행 결과를 쓰시오. 
+week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'] 
+rainbow = ['red', 'orange', 'yellow', 'green', 'blue', 'navy', 'purple']
+list_data = [week, rainbow]
+print(list_data[1][2])
+
+
+11. 다음 코드의 실행 결과를 쓰시오
+kor_score = [30, 79, 20, 100, 80] 
+math_score = [43, 59, 0, 30, 90] 
+eng_score = [49, 72, 48, 67, 15] 
+midterm_score = [kor_score, math_score, eng_score] 
+print ("score:",midterm_score[2][1])
+
+
+12. 다음 코드의 실행 결과를 쓰시오. 
+alist = ["a", "b", "c"] 
+blist = ["1", "2", "3"] 
+abcd= []
+for a, b in enumerate(zip(alist, blist)):    
+    try:        
+        abcd.append(b[a])    
+    except IndexError:        
+        abcd.append("error")
+
+print(abcd)
+
+
+14. 다음 코드의 실행 결과를 쓰시오
+alphabet = ["a", "b", "c", "d", "e", "f", "g", "h"] 
+nums = [i for i in range(20)] 
+answer = [alpha+str(num) for alpha in alphabet for num in nums if num%2==0] 
+print(len(answer))

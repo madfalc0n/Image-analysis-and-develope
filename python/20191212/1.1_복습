@@ -1,0 +1,52 @@
+python에서 데이터를 효율적으로 메모리 저장하고, 검색, 반환, 관리를 위해 제공되는 자료구조
+Stack은 LIFO(FILO)구조로서... list.append(), list.pop()을 활용합니다
+Queue는 FIFO구조로서...list.append(), list.pop(0)를 활용합니다.
+set 자료구조는 데이터를 저장할때 중복체크 후 중복되지 않았을때 저장함
+set 자료구조는 집합연산 기능을 제공 - union(), | , -, difference(), intersection(), &...
+collections 모듈  
+dequeue는 statck 과 queue구조로 데이터를 사용할 수 있음
+OrderedDict dict 의 key 또는 value를 기준으로 정렬해서 저장하는 구조
+
+dict는 key 는  unique해야 하며 .....존재하지 않는 key로 값을 꺼낼때 Error
+방법1 : dict.get("key", defaultValue)
+방법2 : defaultDict
+
+Counter는 시퀀스 자료형의 데이터 요소 개수를 딕셔너리 형태로 반환해주는 자료구조
+
+문자열을 구분자를 이용해서 분리할때 split()
+여러 문자열을 구분자를 이용해서 하나의 문자열로 결합할때 join()
+
+List Comprehension  -  필터링, map처리 , reduce처리
+[ 표현식 for 아이템 in (시퀀스 자료형 또는 dict자료형) if 조건 ]
+[ if 조건 표현식   for 아이템 in (시퀀스 자료형 또는 dict자료형)  ]
+[ if 조건 표현식  else  표현식 for 아이템 in (시퀀스 자료형 또는 dict자료형)  ]
+[ 표현식 for 아이템1 in (시퀀스 자료형 또는 dict자료형) for 아이템2 in (시퀀스 자료형 또는 dict자료형)]
+=> for 아이템1 in (시퀀스 자료형 또는 dict자료형):
+          for 아이템2 in (시퀀스 자료형 또는 dict자료형):
+              표현식
+[ [표현식 for 아이템1 in (시퀀스 자료형 또는 dict자료형)] for 아이템2 in (시퀀스 자료형 또는 dict자료형)]
+=> for 아이템2 in (시퀀스 자료형 또는 dict자료형):
+          for 아이템1 in (시퀀스 자료형 또는 dict자료형):
+              표현식
+[ [ ...], [...], [...]]
+
+map( 함수,  자료구조객체) => Generator 객체 반환
+list(map( 함수,  자료구조객체) ) #python3버전에서는 이렇게 사용해야 list로 생성됩니다.
+
+from functools import reduce
+reduce(함수,  자료구조객체) 는 자료구조의 데이터에 함수를 적용하여 통합(요약집계) 처리할때 사용
+
+enumerate() - 리스트로부터 데이터와 인덱스를 함께 반환
+zip() - 여러 시퀀스 객체들로부터 동일한 인덱스에 저장된 데이터를 묶어서 반환
+
+
+def 함수이름(*매개변수) :    #가변매개변수이므로  함수 호출시 가변인수 전달     
+def 함수이름(**매개변수) :    #키워드가변매개변수이므로  함수 호출시 이름=값 형태의 가변인수 전달
+
+def 함수이름(매개변수) : 
+    local1, local2, local2,...= *매개변수   #unpacking
+
+
+def 함수이름(매개변수) : 
+    [[], [], [],... ]= **매개변수
+     [(), (), (),.... ]= **매개변수  #unpacking
