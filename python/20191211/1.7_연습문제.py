@@ -17,14 +17,14 @@ Created on Wed Dec 11 13:07:06 2019
 max_val = 10   
 
 print("정수값을 입력하세요.")
-set_list = set()
+set_list = []
 for i in range(max_val):
     value = int(input())
     if value == 0:
         break
-    set_list.add(value)
-
-value_list = list(set_list)
+    set_list.append(value)
+set_list.sort()
+value_list = set_list
 print("두 번째로 큰 값은 {0} 입니다. " .format(value_list[-2]))
 
 
@@ -44,7 +44,7 @@ lower_string = string_value.lower()
 
 alphabet_dict = {}
 max_count = 0
-for i in range(len(lower_string)): #97 부터 122 까지 소문자
+for i in range(len(lower_string)): #d
     if lower_string[i] in alphabet_dict:
         continue
     alphabet_dict[lower_string[i]] = lower_string.count(lower_string[i])
