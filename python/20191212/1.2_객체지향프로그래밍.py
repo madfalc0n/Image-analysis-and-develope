@@ -99,7 +99,7 @@ Created on Thu Dec 12 13:09:16 2019
 
 
 class SoccerPlayer(object):
-     def __init__(self, name, position, back_number):
+     def __init__(self, name, position, back_number): # 초기에 설정할 고유 인스턴스
          self.name = "1"
          self.position = "2"
          self.back_number = "3ㅏ"
