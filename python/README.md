@@ -56,5 +56,5 @@
 ## 12월 16일
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191216)
  - 정리내용
- 1. Numpy
- 2. Pandas
+ 1. [Numpy](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.1_numpy.ipynb)
+ 2. [Pandas](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.2_pandas.ipynb)
