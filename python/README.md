@@ -52,3 +52,9 @@
  2. oracle 설치 및 실습
  3. python_oracle 연동 및 실습
  4. python을 통한 csv파일 읽고 쓰기
+ 
+## 12월 16일
+ - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191216)
+ - 정리내용
+ 1. Numpy
+ 2. Pandas
