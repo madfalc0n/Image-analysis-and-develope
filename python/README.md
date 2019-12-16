@@ -58,3 +58,4 @@
  - 정리내용
  1. [Numpy](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.1_numpy.ipynb)
  2. [Pandas](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.2_pandas.ipynb)
+ 3. [Numpy_practice](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.3_Numpy_exercise_training.ipynb)
