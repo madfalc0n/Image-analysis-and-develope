@@ -24,14 +24,14 @@
 ## 12월 11일
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191211)
  - 정리내용
- 0. 전날 습득한 내용 복습 및 연습문제 풀이
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191211/1.0_review.md)
  1. 자료구조(스택/큐/튜플/세트,딕셔너리)
  2. 파이썬 스타일 코드(간략하게 쓰기위한 다양한 함수 숙지)
 
 ## 12월 12일
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191212)
  - 정리내용
- 0. 전날 습득한 내용 복습
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191212/1.0_review.md)
  1. 객체 지향 프로그래밍
  - 확장 및 변경이 용이한
  - 객체 단위로 기능을 만듬
@@ -47,7 +47,7 @@
 ## 12월 13일
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191213)
  - 정리내용
- 0. 전날 습득한 내용 복습
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191213/1.0_review.md)
  1. 파일 다루기
  2. oracle 설치 및 실습
  3. python_oracle 연동 및 실습
@@ -56,6 +56,29 @@
 ## 12월 16일
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191216)
  - 정리내용
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.0_review.md)
  1. [Numpy](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.1_numpy.ipynb)
  2. [Pandas](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.2_pandas.ipynb)
- 3. [Numpy_practice](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.3_Numpy_exercise_training.ipynb)
+ 3. [Numpy_practice](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191216/1.3_Numpy_exercise_training.ipynb) 
+ 
+## 12월 17일
+ - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191217) 
+ - 정리내용
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191217/1.0_review.md)
+ 1. [Pandas_2](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191217/1.1_Pandas_2.ipynb)
+ 2. File_load_and_read
+ 3. apply_function
+ 4. [correlation coefficient and covariance](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191217/1.5_correlation_coefficient_and_covariance.ipynb)
+ 5. [Exploratory Data Analysis](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191217/1.6_EDA.ipynb)
+ 6. 판다스로 인구수 구하기(연습문제)
+ 
+## 12월 18일
+ - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191218) 
+ - 정리내용
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.0_review.md)
+ 1. CSV_file_read
+ 2. [DataFrame 관련 함수](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.2_chapter_7.ipynb)
+ 3. [DataFrame 관련 함수_2](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.3_chapter_8.ipynb)
+ 5. [matplotlib를 통한 그래프](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.4_graph.ipynb)
+ 6. [csv 파일 read 및 문제풀기](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.5_practice_quiz.ipynb)
+ 
