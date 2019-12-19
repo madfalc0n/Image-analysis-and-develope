@@ -81,4 +81,13 @@
  3. [DataFrame 관련 함수_2](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.3_chapter_8.ipynb)
  5. [matplotlib를 통한 그래프](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.4_graph.ipynb)
  6. [csv 파일 read 및 문제풀기](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191218/1.5_practice_quiz.ipynb)
- 
+
+## 12월 19일
+ - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191219) 
+ - 정리내용
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.0_review.md)
+ 1. [8장(Concatenating,피벗(간략))]
+ 2. [9장(그래프)]()
+ 3. [10장(Groupby, 피벗테이블)]()
+ 4. [11장(시계열분석)]()
+ 5. [연습문제(소셜게임의 매상분석)]()
