@@ -8,3 +8,8 @@
 
 ### 3. Anaconda 내용 정리
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/anaconda)
+
+### 4. Machine Learning 내용 정리
+ - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/Machine_Learning)
+ 
+ 

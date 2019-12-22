@@ -91,3 +91,10 @@
  3. [10장(Groupby, 피벗테이블)]()
  4. [11장(시계열분석)]()
  5. [연습문제(소셜게임의 매상분석)]()
+ 
+## 12월 20일
+ - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191220)  
+ - 정리내용
+ 0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191220/1.0_review.md)
+ 
+ 
