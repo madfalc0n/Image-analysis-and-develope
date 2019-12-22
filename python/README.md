@@ -86,11 +86,14 @@
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191219) 
  - 정리내용
  0. [전날 습득한 내용 복습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.0_review.md)
- 1. [8장(Concatenating,피벗(간략))]
- 2. [9장(그래프)]()
- 3. [10장(Groupby, 피벗테이블)]()
- 4. [11장(시계열분석)]()
- 5. [연습문제(소셜게임의 매상분석)]()
+ 1. [8장(Concatenating,피벗(간략))](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.1_chapter_8_2.ipynb)
+ 2. [9장(그래프) 1](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.2_chapter_9.ipynb)
+ 3. [그래프실습 2](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.3_grapth_2.ipynb)
+ 4. [그래프실습 3, folium 모듈을 통해 대학교 지도에 표시해보기](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.4_grapth_3.ipynb)
+ 5. [10장(Groupby, 피벗테이블)](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.5_chapter_10.ipynb)
+ 6. [11장(시계열분석)](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.6_chapter_11.ipynb)
+ 7. [시계열분석 실습](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.7_chapter_11_practice.ipynb)
+ 8. [연습문제(소셜게임의 매상분석)](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python/20191219/1.8_today_practice.ipynb)
  
 ## 12월 20일
  - [테스트 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/python/20191220)  
