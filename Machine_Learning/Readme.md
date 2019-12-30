@@ -8,4 +8,4 @@
  2. [Linear Regression_practice](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/Machine_Learning/20191220/1.3_regression_practice.ipynb)
  3. [Logistic Regression](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/Machine_Learning/20191220/1.4_practice_rogistic_regression.ipynb)
  4. [회귀관련 실습테스트파일](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/Machine_Learning/20191220/ch10.ipynb)
- 
+
