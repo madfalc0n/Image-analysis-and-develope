@@ -61,7 +61,7 @@
 
 ## 5. 산출물
 
-0. [데이터 전처리작업](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/project/main/0.Data_preprocessing.ipynb)
-1. [EDA_1_그래프시각화](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/project/main/1.Exploratory_Data_Analysis_1(graph).ipynb)
-2. [EDA_2_folium을 활용한 지도생성](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/project/main/2.Exploratory_Data_Analysis_2(folium_map).ipynb)
-3. [선형회귀알고리즘을 이용한 모델링](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/project/main/3.Modeling(linear_regression).ipynb)
+0. [데이터 전처리작업](main/0.Data_preprocessing.ipynb)
+1. [EDA_1_그래프시각화](main/1.Exploratory_Data_Analysis_1(graph).ipynb)
+2. [EDA_2_folium을 활용한 지도생성](main/2.Exploratory_Data_Analysis_2(folium_map).ipynb)
+3. [선형회귀알고리즘을 이용한 모델링](main/3.Modeling(linear_regression).ipynb)
