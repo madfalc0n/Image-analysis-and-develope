@@ -46,16 +46,16 @@
      4. CCTV 합
      5. 단란 및 유흥주점 합
      
-     <img src="\images\seoul_crime_order.PNG" alt="seoul_crime_order" style="zoom:33%;" /><img src="\images\seoul_pub_order.PNG" alt="seoul_pub_order" style="zoom:33%;" /><img src="\images\seoul_cctv_order.PNG" alt="seoul_cctv_order" style="zoom: 33%;" />
+     <img src="/images/seoul_crime_order.PNG" alt="seoul_crime_order" style="zoom:33%;" /><img src="/images/seoul_pub_order.PNG" alt="seoul_pub_order" style="zoom:33%;" /><img src="/images/seoul_cctv_order.PNG" alt="seoul_cctv_order" style="zoom: 33%;" />
   
   3. 추가적인 분석을 위해 matplot 라이브러리를 통해 CCTV- 범죄, 인구수-범죄, 단란 및 유흥- 범죄 간의 상관관계 그래프 추출
-  ![matplot_graph](\images\matplot_graph.JPG)
+  ![matplot_graph](/images/matplot_graph.JPG)
   
   4. Seaborn 라이브러리를 통한 범죄 수에 미치는 요인을 분석하기 위해 Heatmap 활용
   
   5. '강남구' 지역을 Heatmap을 통해 상관관계가 높은 요인을 분석함, 선형회귀 알고리즘을 통해 학습 및 예측 결과 점수 0.85를 얻음
   
-     <img src="\images\heatmap.png" alt="heatmap" style="zoom:33%;" /><img src="\images\linear_regression.png" alt="linear_regression" style="zoom:50%;" />
+     <img src="/images/heatmap.png" alt="heatmap" style="zoom:33%;" /><img src="/images/linear_regression.png" alt="linear_regression" style="zoom:50%;" />
 
 
 
