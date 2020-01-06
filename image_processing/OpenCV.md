@@ -64,8 +64,11 @@
 
 ## 실습
 
-1. [RGB_test](20200106/1.1_rgb_test.ipynb)
-2. [Opencv_imgread_BGR_to_RGB](20200106/1.2_opencv_1_img_open_converting.ipynb)
-3. [Opencv_해당영역 색변경(RGB,HSV)](20200106/1.3_opencv_2_hsv_lab.ipynb)
-4. [Opencv_RGB_HSV_Histogram_lab](20200106/1.4_opencv_3_hist_lab.ipynb)
-5. [Opencv Chroma key_lab](20200106/Chroma key)
+1. [RGB_test](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/20200106/1.1_rgb_test.ipynb)
+2. [Opencv_imgread_BGR_to_RGB](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/20200106/1.2_opencv_1_img_open_converting.ipynb)
+3. [Opencv_해당영역 색변경(RGB,HSV)](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/20200106/1.3_opencv_2_hsv_lab.ipynb)
+4. [Opencv_RGB_HSV_Histogram_lab](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/20200106/1.4_opencv_3_hist_lab.ipynb)
+5. [Opencv Chroma key_lab](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/image_processing/20200106/Chroma key)
+
+
+
