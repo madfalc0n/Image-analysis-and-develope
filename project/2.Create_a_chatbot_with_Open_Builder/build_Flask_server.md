@@ -8,7 +8,7 @@ https://www.palletsprojects.com/p/flask/ 참조
 
 
 
-## 절차 및 테스트
+## 1. 절차 및 테스트
 
 1. pip install flask
 
@@ -61,6 +61,10 @@ https://www.palletsprojects.com/p/flask/ 참조
    ```
 
 4. `CMD` 또는 아나콘다 프롬프트에서 다음과 같이 입력
+
+   1. `cd`명령어를 통해 main.py가 있는 디렉토리로 이동
+   2. `set flask_APP=main.py` 입력
+   3. `flask run` 입력 
 
    ```bash
    #먼저 main.py  가 있는 폴더로 이동후 다음과 같이 입력
@@ -128,7 +132,9 @@ https://www.palletsprojects.com/p/flask/ 참조
 
 
 
-## POST 메소드와 json 형식으로  DB 저장 및 출력
+## 2. POST 메소드와 json 형식으로  DB 저장 및 출력
+
+> POSTMAN 프로그램을 통해 각 메소드 별로 요청시 처리 됨
 
 - 소스
 
@@ -196,7 +202,7 @@ https://www.palletsprojects.com/p/flask/ 참조
 
 
 
-## DB관련 호출시
+## 3. DB관련 호출시
 
 ```python
 import pickle
