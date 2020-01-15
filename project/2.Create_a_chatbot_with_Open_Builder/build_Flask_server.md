@@ -194,3 +194,15 @@ https://www.palletsprojects.com/p/flask/ 참조
 
   
 
+
+
+## DB관련 호출시
+
+```python
+import pickle
+
+db = pickle.load('./db.bin')
+
+pickle.dump(db, './db.bin')
+```
+
