@@ -1,39 +1,58 @@
 from flask import Flask, escape, request,send_file, send_from_directory, safe_join, abort
 from PIL import Image
 import requests
-
 from io import BytesIO
 import numpy as np
-
-import matplotlib.pyplot as plt
 import cv2
-
 import math
 import pytesseract
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files (x86)\Tesseract-OCR'
+import ctypes
+
+if ctypes.windll.shell32.IsUserAnAdmin():
+    print('관리자권한으로 실행된 프로세스입니다.')
+else:
+    print('일반권한으로 실행된 프로세스입니다.')
+
 
 app = Flask(__name__)
 
+#####기본용##############
+@app.route('/' , methods=['POST'])
+def default_mode():
+    body = request.get_json()
+    print(body)
+    try:
+        # URL 파싱 후 이미지 형식으로save
+        url = body['userRequest']['params']['media']['url']
+    except KeyError as key:
+        print("이미지가 아님")
+        return {
+            "version": "2.0",
+            "template": {
+                "outputs": [
+                    {
+                        "simpleText": {
+                            "text": "이미지를 넣어주세요."
+                        }
+                    }
+                ]
+            }
+        }
 
 
 ######이미지용############
-@app.route('/' , methods=['POST']) #사용자 정보를 받아옴으로써 POST 사용,  
+@app.route('/imagemode' , methods=['POST']) #사용자 정보를 받아옴으로써 POST 사용,
 def image_detect():
-    
-
-
-
-
     # 이미지 JSON GET
+    print("이미지 모드")
     body = request.get_json()
-    print(body)
+    #print(body)
 
     #URL 파싱 후 이미지 형식으로save
     url = body['userRequest']['params']['media']['url']
-    print("출력",body['userRequest']['params']['media']['url'])
-    
-    
-    
+    print("이미지 URL 주소",body['userRequest']['params']['media']['url'])
+
     response = requests.get(url)
     img = np.array(Image.open(BytesIO(response.content)))
     img_original = np.array(Image.open(BytesIO(response.content)))
@@ -63,7 +82,16 @@ def image_detect():
     print("approx 값: ", len(approx))
     if len(approx) != 4:
         return {
-            "info" : "사각형 인식이 안됨"
+            "version": "2.0",
+            "template": {
+                "outputs": [
+                    {
+                        "simpleText": {
+                            "text": "사각형 인식이 안됩니다 제대로 보내주세요."
+                        }
+                    }
+                ]
+            }
         }
     
 
@@ -86,33 +114,31 @@ def image_detect():
     img_result = cv2.warpPerspective(img, M, (int(obj_width), int(obj_height)))
     str = pytesseract.image_to_string(img_result)
     print(str)
-    # return {
-    #     "info" : str
-    # }
     return {
-            "version": "2.0",
-            "template": {
-                "outputs": [
-                    {
-                        "simpleText": {
-                        "text": "간단한 텍스트 요소입니다."
-                        }},
-                    {    "simpleImage": {
-                            "imageUrl": "http://734fcb48.ngrok.io/tmp",
-                            "altText": "보물상자입니다"
-                        }
-                    }
-                ]
-            }
+        "info" : str
+    }
+
+
+
+#문자로 입력시
+@app.route('/textmode' , methods=['POST']) #사용자 정보를 받아옴으로써 POST 사용,
+def text_respone():
+    return {
+        "version": "2.0",
+        "template": {
+            "outputs": [
+                {
+                    "simpleText": {
+                        "text": "텍스트를 입력 해주세요"
+                    }},
+                {"simpleImage": {
+                    "imageUrl": "http://k.kakaocdn.net/dn/83BvP/bl20duRC1Q1/lj3JUcmrzC53YIjNDkqbWK/i_6piz1p.jpg",
+                    "altText": "보물상자입니다"
+                }
+                }
+            ]
         }
-
-
-
-@app.route('/tmp')
-def get_image():
-    filename = 'tmp/out.png'
-
-    return send_file(filename, mimetype='image/png')
+    }
 
 
 
@@ -179,7 +205,7 @@ def detect_test():
                 "outputs": [
                     {
                         "simpleText": {
-                        "text": "간단한 텍스트 요소입니다."
+                        "text": str
                         }},
                     {    "simpleImage": {
                             "imageUrl": "http://734fcb48.ngrok.io/tmp/out.png",
@@ -207,9 +233,17 @@ def detect_test():
     except KeyError as key:
         print("에러발생", key)
         return {
-            "info" : key
+            "version": "2.0",
+            "template": {
+                "outputs": [
+                    {
+                        "simpleText": {
+                            "text": "이미지를 넣어주세요."
+                        }
+                    }
+                ]
+            }
         }
-    
 
 
     
