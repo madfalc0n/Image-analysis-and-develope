@@ -25,7 +25,18 @@ def create_user():
     db[str(id)]=body
     print("db 값은: ",db)
     id += 1
-    return body,id
+    return {
+    "version": "2.0",
+    "template": {
+        "outputs": [
+            {
+                "simpleText": {
+                    "text": "간단한 텍스트 요소입니다."
+                }
+            }
+        ]
+    }
+}
 
 @app.route('/users/all', methods=['GET'])
 def select_all_user():
