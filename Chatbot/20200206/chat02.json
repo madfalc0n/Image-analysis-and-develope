@@ -1,0 +1,44 @@
+{
+    "responseId": "e1064c10-0410-4339-b9d4-331026f786f1-ce609cdc",
+    "queryResult": {
+        "queryText": "오늘 부산 날씨 어때",
+        "parameters": {
+            "date": "2020-02-06T12:00:00+09:00",
+            "geo-city": "부산광역시"
+        },
+        "allRequiredParamsPresent": true,
+        "fulfillmentText": "2020-02-06   부산광역시 날씨는  좋아",
+        "fulfillmentMessages": [
+            {
+                "text": {
+                    "text": [
+                        "2020-02-06   부산광역시 날씨는  좋아"
+                    ]
+                }
+            }
+        ],
+        "outputContexts": [
+            {
+                "name": "projects/aichatbot-nudgyl/agent/sessions/dffa4f77-a2b1-51af-39c3-7d473c0c11e4/contexts/__system_counters__",
+                "parameters": {
+                    "no-input": 0.0,
+                    "no-match": 0.0,
+                    "date": "2020-02-06T12:00:00+09:00",
+                    "date.original": "오늘",
+                    "geo-city": "부산광역시",
+                    "geo-city.original": "부산"
+                }
+            }
+        ],
+        "intent": {
+            "name": "projects/aichatbot-nudgyl/agent/intents/8f04fd90-b0d2-430f-bac2-3fee1c5f5703",
+            "displayName": "weather"
+        },
+        "intentDetectionConfidence": 1.0,
+        "languageCode": "ko"
+    },
+    "originalDetectIntentRequest": {
+        "payload": {}
+    },
+    "session": "projects/aichatbot-nudgyl/agent/sessions/dffa4f77-a2b1-51af-39c3-7d473c0c11e4"
+}
