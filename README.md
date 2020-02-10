@@ -27,6 +27,5 @@
 ## 8. Project
 
 - [Analysis_and_Prediction_of_Crime_Correlation_by_Administrative_District_in_Seoul_using_Public_Data](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/project/1.Analysis_and_Prediction_of_Crime_Correlation_by_Administrative_District_in_Seoul_using_Public_Data)
-
-- [Create_a_chatbot_with_KaKao Open_Builder](project/2.Create_a_chatbot_with_Open_Builder)
+- [Create_a_chatbot_with_KaKao Open_Builder](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/project//2.Create_a_chatbot_with_Open_Builder)
 
