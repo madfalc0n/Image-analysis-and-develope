@@ -1,0 +1,24 @@
+Yolo image 갤러리  <br>
+
+<form action = "/fileUpload" method = "POST"
+       enctype = "multipart/form-data">      
+     <input type = "file" name = "file1" /> <br>
+     제목 :<input type=text name=title>
+     <select name=algorithm>
+         <option value=0>YOLO</option>
+         <option value=1>face detection</option>
+     </select>
+     <input type = "submit" value="전송"/>     
+    
+</form>
+
+<table>
+    {% for s  in  listData  %}     
+    <tr>        
+           <td> <a href=/view?id={{s.id}}> <img src="/static/{{s.img}}" width=30 >  </a>  </td>
+           <td> {{s.title}}    </td>
+           <td> <a href=/deleteimage?id={{s.id}}>삭제</a> </td>
+    </tr>    
+    {% endfor %}
+</table>
+

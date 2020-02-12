@@ -1,0 +1,33 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+</head>
+
+Yolo image 갤러리  <br>
+
+<!--파일 업로드 하는 코드-->
+<form action = "/fileUpload" method = "POST" enctype = "multipart/form-data">
+     <input type = "file" name = "file1" /> <br>
+     제목 :<input type="text" name=title>
+    <select name=algorithm>
+         <option value=0>YOLO</option>
+         <option value=1>face detection</option>
+     </select>
+     <input type = "submit" value="전송"/>
+
+</form>
+<table>
+    <!--아래의 구문을 통해 다양한 데이터가 존재할 경우 반복식으로 표현
+    리스트 형식으로도 가능하고 딕셔너리 형식으로도 가능
+    -->
+    {% for s in listdata %}
+    <tr>
+        <td> {{s.title}} </td>
+        <td> <a href="/view?id={{s.id}}"> <img src="/static/{{s.img}}" width=100> </a></td>
+        <td> <a href="/filedel?id={{s.id}}"> 이미지 삭제</a> </td>
+    </tr>
+    {% endfor %}
+
+</table>
+<br>
+<td><a href="/"> 홈으로</a> </td>
