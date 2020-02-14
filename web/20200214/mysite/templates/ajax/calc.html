@@ -1,0 +1,54 @@
+<meta charset="utf-8">
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+
+계산기 연습페이지 입니다. <br>
+
+
+<form action="calc" >
+    <input type="text" name="op1" id="op1"> + <input type="text" name="op2" id="op2">
+    <button id="btnCalc">=</button> <input type="text" name="result" id="result">
+</form>
+
+
+<script> 
+    /*
+    op1 = document.getElementById("op1") // document(현재페이지)에서 특정 엘리먼트를 갖는 노드를 읽어옴, 표준함수임
+    op1.value = 20;   
+    alert(op1.value) 
+    // 위 document의 op1의 값을 반환
+
+    $("#op1").val(40);
+    alert(  $("#op1").val()  );
+    */
+
+     $("#btnCalc").click( function() {
+           //클라이언트에서 돌리는
+           /*
+           op1 = parseInt($("#op1").val()); // 문자를 숫자로 바꾸는 함수 
+           op2 = parseInt($("#op2").val());
+           alert($("#result").val(op1+op2));
+            */
+           //http://127.0.0.1:8000/ajax/calc 를 호출
+           //자바스크립트에서 json 정의시 퍼텐셜 마크를 쓰지않음
+           
+           //2개의 값을 가지고 서버로 http로 재요청 후
+           var param = {op1:$('#op1').val(), op2:$("#op2").val()         }
+           $.get("/ajax/calc", param, function(data) { 
+                $("#result").val(data.result) // 데이터를 주고받을 때 html을 쓰지 않ㅎ는다. 서버로 http로 재요청 
+                //alert(JSON.stringify(data));
+                console.log(JSON.stringify(data));
+                //alert('bbb');
+           });
+           //alert('aaa');  
+           // 비동기방식으로 쓰레드로 진행되어 실제 응답은 aaa 먼저 주고 bbb를 반환
+           
+     });
+                        
+
+
+</script>
