@@ -1,0 +1,27 @@
+
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+아이디 <input type=text name=id id="id" > <br>
+암호   <input type=password name=pwd id="pwd"> <br>
+<button id="btnCalc">로그인</button>
+
+<!--form 을 사용하면 페이지가 넘어간다...-->
+
+<script>
+     $("#btnCalc").click( function() {
+           var param = {id:$("#id").val(), pwd:$("#pwd").val()};
+           $.get("/ajax/login", param, function(data) { //브라우저가  서버로 http 통해 요청하는 것
+             //alert(JSON.stringify(data));
+             console.log(JSON.stringify(data)); //개발자도구의 console 화면에서 확인 가능
+             if ( data.error == 0) location.href = "/ajax"
+             else {
+                $("#id").focus();
+                $("#id").val('');
+                $("#pwd").val('');
+                //alert(data.message);
+             }
+           });
+     });
+</script>
