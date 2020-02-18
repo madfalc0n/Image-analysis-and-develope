@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}   
+
+
+게시물 보기  <br>
+
+{% block content %}
+    <hr>
+    {{data.title}}  <br>
+    {{data.text | linebreaks}}
+    <hr>
+    <a href="{% url 'list'  %}">  리스트로 돌아가기 </a> <br>
+
+{% endblock %}
