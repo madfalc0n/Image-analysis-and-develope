@@ -1,0 +1,13 @@
+{% extends 'myboard/base.html' %}
+
+게시물 보기 <br>
+
+{% block content %}
+
+{{d.title}}  <br>
+{{d.text|linebreaks}}
+
+<a href="{% url 'myboard' category d.pk  'edit' %}">수정 </a>
+
+
+{% endblock %}

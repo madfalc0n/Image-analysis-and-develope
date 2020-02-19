@@ -1,0 +1,14 @@
+{% extends 'myboard/base.html' %}   
+
+
+게시물 보기  <br>
+
+{% block content %}
+    <hr>
+    {{data.title}}  <br>
+    {{data.text | linebreaks}}
+    <hr>
+    <a href="{% url 'myboard' 'category' 0 'list' %}">  리스트로 돌아가기 </a> <br>
+    <a href="{% url 'myboard' 'category' data.pk 'edit'%}"> 수정하기 </a> <br>
+
+{% endblock %}

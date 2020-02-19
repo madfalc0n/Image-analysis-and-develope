@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<a href="{% url 'edit' 0%}">Add </a> <br>
+{%  for d in data %}
+<a href="{% url 'detail' d.pk %}"> {{d.title}} </a> <br>
+{% endfor %}
+
+{% endblock %}

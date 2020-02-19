@@ -1,0 +1,40 @@
+<script src="http://code.jquery.com/jquery-1.7.js"></script>
+
+
+<script>
+
+ $(function () {
+ 
+
+ $("#btLogin").click( function() {
+ 
+    var param = {txId:$("#txId").val(), txPw:$("#txPw").val()};
+    
+    $.ajax( {
+         url: "loginajax",
+         type: "GET",
+         dataType: "json",
+         data : param,
+         success : function(data) {  
+            if ( data.response == 'ok' ) {
+                alert('^^');
+            } else alert('¤Ð¤Ð');
+            
+          },
+          error : function(data) {  
+               alert('error'); 
+           },
+    });
+ }); 
+ }); 
+
+</script>
+
+<form method=post>
+
+id  <input type=text name=txId id=txId> <br>
+pw <input type=password name=txPw id=txPw> <br>
+
+<input type=button value=login id=btLogin>
+
+</form>

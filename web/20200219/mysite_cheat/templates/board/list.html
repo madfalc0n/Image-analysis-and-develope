@@ -1,0 +1,9 @@
+{% extends 'board/base.html' %}
+
+{% block content %}
+<a href="{% url 'board' 0 'add'%}">Add </a> <br>
+{%  for d in data %}
+<a href="{% url 'board' d.pk 'detail' %}"> {{d.title}} </a> <br>
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,38 @@
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+<input type=text name=op1 id="op1" value="5">  + <input type=text name=op2 id="op2">
+<button id="btnCalc">=</button> <input type=text name="result" id="result">
+
+
+<script>
+     /*
+     op1 = document.getElementById("op1");
+     op1.value = 20;
+     alert(op1.value);
+
+     $("#op1").val(40);
+     alert(  $("#op1").val()  );
+     */
+
+     $("#btnCalc").click( function() {
+
+           /*
+           op1 = parseInt($("#op1").val());
+           op2 = parseInt($("#op2").val());
+           $("#result").val(op1+op2);
+           */
+
+           var param = {op1:$("#op1").val(), op2:$("#op2").val()};
+           $.get("/ajax/calc", param, function(data) {
+             alert(JSON.stringify(data));
+             #console.log(JSON.stringify(data));
+             $("#result").val(data.result);
+           });
+     });
+
+
+
+</script>

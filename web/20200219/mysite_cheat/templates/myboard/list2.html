@@ -1,0 +1,30 @@
+{% extends 'myboard/base.html' %}
+
+{% block content %}
+<a href="{% url 'myboard' category 0 'add' %}">Add </a> <br>
+{%  for d in data %}
+<a href="{% url 'myboard' category d.pk 'detail' %}"> {{d.title}} 조횟수 {{d.cnt}} </a> <br>
+{% endfor %}
+
+
+{% if data.has_other_pages %}
+        {% if data.has_previous %}
+          <a href="?page={{ data.previous_page_number }}">&laquo;</a>
+        {% else %}
+          <span>&laquo;</span>
+        {% endif %}
+
+        {% for i in data.paginator.page_range %}
+          {% if data.number == i %}
+            <span>{{ i }} </span>
+          {% else %}
+            <a href="?page={{ i }}">{{ i }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if data.has_next %}
+            <a href="?page={{ data.next_page_number }}">&raquo;</a>
+        {% else %}
+            <span>&raquo;</span>
+        {%endif %}
+    {%endif%}
+{% endblock %}
