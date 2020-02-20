@@ -1,0 +1,39 @@
+<meta charset="utf-8">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://malsup.github.com/jquery.form.js"></script>
+
+
+
+User List <br>
+
+{% for i in data %}
+    이름 {{i.name}}   age {{i.age}}  <a href="listuser?userid={{i.userid}}"> 삭제  </a><br>
+    
+{% endfor %}
+
+<form action=''>
+    <input type="text"  name="q">
+    <input type="submit" value="검색">
+</form>
+<br>
+
+<button id="add"> db추가하기 </button> <br>
+<div id="layer">
+<form action='listuser' method="POST">
+    {% csrf_token %}
+    <input type="text"  name="userid">
+    <input type="text"  name="name">
+    <input type="text"  name="age">
+    <input type="text"  name="hobby">
+    <input type="submit" value="+">
+</form>
+</div>
+
+<script>
+    $("#layer").hide()
+    $("#add").click(function(){
+        $("#layer").toggle()
+
+    });
+</script>

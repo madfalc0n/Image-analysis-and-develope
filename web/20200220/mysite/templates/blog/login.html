@@ -1,0 +1,15 @@
+
+<!--
+  {% url 'login' %} 이렇게 쓰면 자동으로 url 경로 잡아줌
+-->
+
+<form action="{% url 'login' %}" method="POST">
+
+  {% csrf_token %}
+  Username <input type=text name=username  > <br>
+  Password   <input type=password name=password > <br>
+  <input type="submit"" value="로그인"> 
+
+
+
+</form>

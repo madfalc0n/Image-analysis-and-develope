@@ -1,0 +1,89 @@
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+<button id="btnAdd">조회</button>
+
+
+
+<div id = 'view'>
+    <div id='item'>
+    <a href="list?id=4">      <span id=title> 제목_0</span> </a> 
+    조회수 <span id=cnt> 5 </span> 
+    <a id='del' href=""> 지우기 </a>
+
+    </div>
+</div>
+
+
+<script>
+    //$('#view').append("<a href=testest> 데이터2 </a><br>") // 동적으로 생성되었기 때문에 실제 html 소스코드 보기 할때 코드가 보이지 ㅏㅇㄶ음
+    //$('#view').append("<a href=testest> 데이터3 </a><br>") 
+    
+    //var index = 1;
+    // item = $("#item").clone() // item 내
+    // $('#title', item).html('제목' + index) // title 을 찾아서 내용을 '제목' + index로 바꿔라
+    // $('#cnt' , item).text('10')  // cnt 를 찾아서 내용을 10으로 바꿔리
+
+    // $('#view').append(item)
+    // index ++;
+
+
+
+    //$('#del').attr("href", "javascript:deleteBoard(6)"); // 태그를 정의할 때 안에있던 값을 변경 1 -> 6
+
+
+    $("#item").hide();
+
+    var page = 1;
+    function deleteBoard(pk){
+        $.get("/myboard/ajaxdel", {pk:pk}, function(json) {
+            //alert(json.error);
+            $('#item_'+pk).remove()
+
+        });
+    }
+    function getPage(page){
+        //json = {"datas": [{"pk": 9, "title": "\uccab \ubc88\uc9f8 \uae00\uc785\ub2c8\ub2e4.", "cnt": 0}, {"pk": 10, "title": "\ub450 \ubc88\uc9f8 \uae00\uc785\ub2c8\ub2e4.", "cnt": 0}]};
+        // for (i = 0 ; i<json.datas.length; i++){
+        //     console.log(json.datas[i].title , page);
+        //     item = $("#item").clone(); // item 내
+        //     item.show();
+        //     $('#title', item).html('제목_' + json.datas[i].title); // title 을 찾아서 내용을 '제목' + index로 바꿔라
+        //     $('#cnt' , item).text(json.datas[i].cnt);  // cnt 를 찾아서 내용을 10으로 바꿔리
+        //     $('#view').append(item); // view 에 추가하라
+        // }
+
+        $.get("/myboard/ajaxget", {page:page}, function(json){ // function() 이 뭘 의미한다고?
+            console.log(JSON.stringify(json));
+            //if (json.datas.length == 0) alert("마지막 페이지 입니다.");
+            for (i = 0 ; i<json.datas.length; i++){
+                //console.log(json.datas[i].title);
+                item = $("#item").clone(); // item 내
+                item.attr('id', 'item_' + json.datas[i].pk); //id의 속성값을 'item_pk값' 으로 정의 됨
+                item.show();
+                $('#title', item).html('제목_' + json.datas[i].title); // title 을 찾아서 내용을 '제목' + index로 바꿔라
+                $('#cnt' , item).text(json.datas[i].cnt);  // cnt 를 찾아서 내용을 10으로 바꿔리
+                $('#del', item).attr("href", "javascript:deleteBoard("+json.datas[i].pk+ ")");
+                $('#view').append(item); // view 에 추가하라
+            }    
+        });
+    }
+
+    $("#btnAdd").click( function() { // 클릭할 때마다 데이터 추가되도록 설정
+        page++;
+        getPage(page);
+
+    });
+
+    getPage(page);
+
+    // $.get("http://localhost:8000/myboard/ajaxget", {page:1}, function(json){
+    //     console.log(json.stringify(json));
+    // })
+
+</script>

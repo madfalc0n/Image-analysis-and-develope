@@ -1,0 +1,21 @@
+<!-- 모듈호출한다는 느낌? 해당 블록 내 모듈을 호출해서 쓰겠다 ,변경이 필요한 부분만 재사용 하겠다.-->
+{% extends 'blog/base.html' %}   
+
+{% block content %}
+<h5> {{username}} 님 로그인 되었습니다. </h5>
+
+
+
+{% for i in data %}
+    
+    <a href="{% url 'detail' i.pk %}">  {{i.title}} </a>     <br>
+    <!-- <a href="{{i.pk}}/detail">  {{i.title}} </a>     <br>
+    <a href="/blog/{{i.pk}}/detail">  {{i.title}} </a>     <br>
+    <a href="/blog/detail?id={{i.pk}}">  {{i.title}} </a>     <br>
+    <a href="detail?id={{i.pk}}">  {{i.title}} </a>     <br> -->
+
+
+    {% endfor %}
+
+
+{% endblock %}

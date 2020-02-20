@@ -1,0 +1,40 @@
+{% for data in datas %}
+
+    {{data.id}}  / {{data.name}}   <br>
+
+{% endfor %}
+
+<a href="?page=1"> 처음으로 </a>
+<a href="?page=1"> [1] </a>
+<a href="?page=2"> [2] </a>
+<a href="?page=3"> [3] </a>
+<a href="?page={{pages}}"> 이전  페이지 </a>
+<a href="?page={{pages}}"> 다음 페이지 </a>
+
+
+
+
+
+
+{% if datas.has_other_pages %}
+        {% if datas.has_previous %}
+          <a href="?page={{ datas.previous_page_number }}">&laquo;</a>
+        {% else %}
+          <span>&laquo;</span>
+        {% endif %}
+
+        {% for i in datas.paginator.page_range %}
+          {% if datas.number == i %}
+            <span>{{ i }} </span>
+          {% else %}
+            <a href="?page={{ i }}">{{ i }}</a>
+          {% endif %}
+        {% endfor %}
+        {% if datas.has_next %}
+            <a href="?page={{ datas.next_page_number }}">&raquo;</a>
+        {% else %}
+            <span>&raquo;</span>
+        {%endif %}
+    {%endif%}
+
+
