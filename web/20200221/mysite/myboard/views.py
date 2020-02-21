@@ -153,15 +153,15 @@ def listimg(request):
 
 
 def imgupload(request):
-    file = request.FILES['filename']
+    file = request.FILES['filename'] # 웹에서 upload 되는 파일명
     filename = file._name
     print('filename은 ',filename)
 
-    username = request.POST["username"]
+    username = request.POST["username"] # 테이블에 저장된 사용자 Username
     print('username은 ', username)
 
-    #이미지 static 폴더에 업로드
-    fp = open(settings.BASE_DIR + "/static/faces/" + username + "/"+ filename, "wb")
+    
+    fp = open(settings.BASE_DIR + "/static/faces/" + username + "/"+ filename, "wb") #이미지 static 폴더에 업로드
     for chunk in file.chunks() :
         fp.write(chunk)
     fp.close()
