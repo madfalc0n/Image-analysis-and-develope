@@ -1,0 +1,41 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+</head>
+
+사물,얼굴 검출 서비스  <br>
+사진을 올려보세요<br>
+
+
+<!-- 
+<form action ='/login' method="GET">
+
+    id <input type=text name=id> <br>
+    pwd <input type=text name=pwd> <br>
+    <input type="submit" value='로그인'>
+</form>
+-->
+
+
+
+<form action ='/uploadimage' method="POST" enctype="multipart/form-data">
+    <select name=algorithm>
+        <option value=0>사물인식</option>
+        <option value=1>얼굴검출</option>
+    </select>
+    <br>
+    <input type="file" name='file1'/> <br>
+    <input type="submit" value='얼굴인증'/>
+
+</form>
+
+
+<!--
+<form action = "http://127.0.0.1:82/uploadimage" method = "POST"
+       enctype = "multipart/form-data">      
+     <input type = "file" name = "file1" /> <br>
+	 <input type = "file" name = "file2" /> <br>
+	 <input type = "text" name = "text" /> <br>
+     <input type = "submit" value="얼굴인증"/>     
+</form>
+-->

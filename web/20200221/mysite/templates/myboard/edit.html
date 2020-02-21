@@ -1,0 +1,29 @@
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+ <style>
+      .bg { background-color: #eeeeee; }
+      .bd { border: 1px solid #666666; }
+ </style>
+
+{% if form.title.value %}
+<h1>  수정하기 </h1>
+{% else %}
+<h1>  신규작성</h1>
+{% endif %}
+
+
+<form method=post>
+   {% csrf_token %}
+   	{{ form.as_p }}
+
+   <input type="submit" value="작성" >
+
+</form>
+
+<script>
+   $("#id_title").addClass('bg bd');
+</script>
+
+
+

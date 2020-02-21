@@ -1,0 +1,30 @@
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+
+
+
+<!-- <button id="btnAdd">add cell</button>
+<div id="cells">
+<div id="cell"> -->
+<textarea rows="10" cols="40" id="code"></textarea>
+<button id="btnRun">파이썬 코드 실행</button>
+
+<div id="result"> result</div>
+<textarea rows="10" cols="40" id="coderesult"></textarea>
+
+
+<script>
+    $("#btnRun").click( function() {
+           var param = { code:$("#code").val() }; // id가 'code' 인 놈의 값을 가져옴
+           $.get("/ajax/runpython", param, function(data) {
+            //console.log(JSON.stringify(data));
+            $("#coderesult").html(data)
+          });
+     });
+    // $("#btnAdd").click( function() {
+    //     $("#cells").append($("#cell").clone())
+    //   });
+     
+     
+</script>

@@ -1,0 +1,53 @@
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<button id="btnAdd">Add</button>
+
+
+
+<div id="view">
+  <div id="item">
+   <a href=list?id=4> <span id=title>제목~~~~~~~~</span> </a> 
+     조회수<span id=cnt> 0 </span>
+   <br>
+  <div> 
+</div>   
+
+<script>
+   //$("#view").append("<a href=fefef>데이터2</a><br>")
+   //$("#view").append("<a href=fefef>데이터2</a><br>")
+   //$("#title").html("제목1")
+   //$("#cnt").text("10")
+   
+   $("#item").hide();  
+   
+   var page = 1
+   
+  
+
+
+   function getPage(page) {
+		//json = {"datas": [{"pk": 1, "title": "자동차 검출44343", "cnt": 5}, {"pk": 2, "title": "32321321", "cnt": 0}, {"pk": 3, "title": "32312323123", "cnt": 0}]}
+		
+	   $.get("/myboard/ajaxget", {page:page}, function(json) {	   
+			console.log(JSON.stringify(json));
+			for (i = 0; i < json.datas.length; i++) {		
+				item = $("#item").clone();
+				item.show();
+				$("#title", item).html(json.datas[i].title);
+				$("#cnt", item).text(json.datas[i].cnt);      		
+				$("#view").append(item);   					
+			}   
+		});		
+   }    
+   $("#btnAdd").click( function() {  
+			page++;
+			getPage(page);
+   });
+   
+   getPage(page);   
+   
+
+
+
+</script>

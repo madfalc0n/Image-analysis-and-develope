@@ -1,0 +1,13 @@
+{% extends 'myboard/base.html' %}
+
+{% block content %}
+<a href="{% url 'myboard' 'category' 0 'add'%}"> 신규 작성하기  </a> <br>
+<hr>
+
+<h5> 게시글 내용  </h5> 
+{%  for d in data %}
+<a href="{% url 'myboard' 'category' d.pk 'detail'%}"> {{d.title}} </a> 
+<a href="{% url 'myboard' 'category' d.pk 'delete'%}"> 삭제하기</a> <br>
+{% endfor %}
+
+{% endblock %}
