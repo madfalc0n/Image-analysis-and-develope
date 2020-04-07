@@ -8,7 +8,7 @@
  - [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/python)
 
 ## 2. Oracle
- - [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/oracle)
+ - [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/DB)
 
 ## 3. Anaconda
  - [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/blob/master/anaconda)
@@ -34,11 +34,11 @@
 
 ## 9. WEB SCRAPING
 
-- [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/WEB_scraping)
+- [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/web_scraping)
 
 ## 10. WEB
 
-- [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/WEB)
+- [실습 자료](https://github.com/madfalc0n/Image-analysis-and-develope/tree/master/web)
 
 ## 11. Project
 
