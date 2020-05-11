@@ -181,5 +181,126 @@
   - 웹 서버를 구현하여 실제 영상 송출 및 쓰러진 사람 발견에 대한 모니터링 진행
   - 실시간으로 문자가 전송되도록 NCP SMS 연동을 위한 코드 작성 및 테스트 진행 
 - 2020년 04월 23일
-  - 응급환자 발생에 대한 인식속도를 개선하기 위한 기술조사 진행(),
+  
+  - 응급환자 발생에 대한 인식속도를 개선하기 위한 기술조사 진행
 
+
+
+## 5. 최종정리 및 프로젝트 결과
+
+### 개발환경에 대한 소개
+
+내가  사용한 시스템들의 대해 소개하자면 다음과 같다.
+
+- OS: Ubuntu 16.04.6 LTS(AWS EC2)
+- 가상환경: Anaconda 4.8.2
+- 개발환경: python 3.6.10, Opencv-python 4.1.2.30, Flask 1.1.1, YOLO v3
+- 그 외 API: Naver Cloud Platform Simple & Easy Notification Service(SMS)
+
+<img src="images/README/image-20200511103229610.png" alt="image-20200511103229610" style="zoom:80%;" />
+
+### 객체 인식 알고리즘 YOLO v3 
+
+> 논문자료 : [YOLO v3](https://pjreddie.com/media/files/papers/YOLOv3.pdf) 
+
+YOLO(You Only Live Once), 이미지를 한 번 보는 것만으로 객체의 종류와 위치를 추측하는 딥러닝 기반의 알고리즘이다. Darknet-53(53개의 Convolutional layer)의 네트워크를 기반으로 다층 신경망 구조로 되어있고 공간적으로 분리된 bounding box 들과 class에 대한 확률과 연관된 regression 문제로 재정의한 모델이다. 3개의 출력층으로 구성되어 있으며 서로 다른 scale을 통해 bounding box를 검출한다.
+
+<img src="images/README/image-20200511103421911.png" alt="image-20200511103421911" style="zoom:80%;" />
+
+> 출처 : [외국사이트](https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b)
+
+각 출력층에서 프레임의 픽셀 별로 커널(bounding box에 대한 속성)을 가지고 있으며 커널 사이즈는 다음과 같다.
+
+```markdown
+1 x 1 x (B X ( 5 + C )), B는 bounding box의 수(YOLO v3는 3), C는 클래스의 수
+```
+
+YOLO v3에서 default 클래스 수는 총 80개로 커널 사이즈는 1 x 1 x 255 임 
+
+<img src="images/README/image-20200511103807836.png" alt="image-20200511103807836" style="zoom:80%;" />
+
+각 출력층에서 픽셀에 대한 클래스의 확률을 계산하여 bounding box 검출하고 결과를 종합하여 하나의 출력값을 도출한다.
+
+<img src="images/README/image-20200511103842978.png" alt="image-20200511103842978" style="zoom:80%;" />
+
+오픈소스기반 뉴럴넷 프레임워크인 Darknet을 이용하여 모델 학습을 진행하였고 데이터는 AI 허브에서 제공하는 이상행동 CCTV 영상 데이터를 사용하였다. 파이썬에서 제공하는 Augmentation 라이브러리인 **Imgaug**를 사용하여 부족한 데이터를 증폭시켜 총 2144개의 데이터를 사용했다.(Train image set : 1716장, Test image set : 428장)
+
+[라벨링 툴](https://github.com/tzutalin/labelImg)을 이용해 쓰러진 사람에 대한 bounding box를 지정하여 약 2800번의 학습 결과 Loss가 대략 0.2로 수렴하는것을 확인했다.
+
+<img src="images/README/image-20200511104119358.png" alt="image-20200511104119358" style="zoom:80%;" />
+
+### 시스템 동작 절차
+
+동작 절차는 크게 3가지로 나뉜다.
+
+1. CCTV에서 송신되는 영상을 Flask 웹 서버에서 수신
+
+2. 수신 받은 영상에서 응급환자가 발생했는지 딥러닝 모델(YOLO v3)를 이용하여 실시간으로 감시
+
+3. 실시간 감시 중 응급환자가 발생한 경우 SMS API를 통해 관리자에게 해당 내용 전파 
+
+<img src="images/README/image-20200511104312019.png" alt="image-20200511104312019" style="zoom:80%;" />
+
+### 간략한 코드리뷰
+
+#### 1. 병렬처리를 위한 init 부분
+
+먼저 Flask WEB server에서는 멀티프로세싱과 큐를 이용하여 영상송출(create_frame)부분과 응급환자 인식(processing_frame)기능이 동시에 처리되도록 구현하였다. 이는 객체인식을 수행하는 부분에서 시스템 성능상의 문제로 지연이 발생하는 것을 줄이기 위함이다.
+
+<img src="images/README/image-20200511104742596.png" alt="image-20200511104742596" style="zoom:80%;" />
+
+#### 2. 영상송출 부분 및 응급상황 인식 부분
+
+1. **create_frame** 함수에서 영상 호출 후 응급환자 인식을 위해 프레임을 Queue에 input한다.
+
+2. **processing_frame** 함수에서 1번과정을 통해 Queue에 저장된 프레임을 호출하고 객체 인식(YOLO)을 이용하여 응급환자 발생여부를 확인한다.
+
+<img src="images/README/image-20200511105001065.png" alt="image-20200511105001065" style="zoom:80%;" />
+
+#### 3. 객체 인식 부분
+
+1.  **YOLO** 함수에서 직접 학습 시킨 모델에 대한 네트워크의 설정 및 weights, config, class name을 정의한다.
+
+2. **processing_frame**에서 받아온 프레임을 네트워크에 입력하고 얻은 결과 정보를 **postprocess** 함수에서 추출한다.
+
+<img src="images/README/image-20200511105151274.png" alt="image-20200511105151274" style="zoom:80%;" />
+
+3.  **posetprocess** 함수에서 YOLO를 통해 인식된 결과를 설정한 값(Confidence threshold, Non-maximum suppression threshold)을 기준으로 분류한다.(쓰러진 사람인지 아닌지 분류)
+
+4.  쓰러진 사람이 발견될 경우 **drawPred** 함수에서 쓰러진 사람에 대한 Bounding box를 표시한다.
+
+<img src="images/README/image-20200511105313630.png" alt="image-20200511105313630" style="zoom:80%;" />
+
+#### 4. WEB 부분
+
+1.  사용자가 웹 호출 시 **templates** 폴더에 저장된 **index.html**를 리턴하도록 설정하였다. index.html을 호출하게 되면 **/view_info1**, **/view_info2**를 자동으로 호출하게 되는데 이는 원본영상과 객체 인식 후의 영상을 송출하게 된다.
+
+   <img src="images/README/image-20200511105601012.png" alt="image-20200511105601012" style="zoom:80%;" />
+
+   <img src="images/README/image-20200511105547225.png" alt="image-20200511105547225" style="zoom:80%;" />
+
+2.  **generate1/2** 함수에서 실시간으로 처리되는 프레임을 반환하여 웹에서 영상처럼 확인가능하도록 구현하였다.
+
+<img src="images/README/image-20200511105612429.png" alt="image-20200511105612429" style="zoom:80%;" />
+
+3. 실제 사용자가 index.html을 호출하면 다음과 같이 확인하게 된다.
+
+   <img src="images/README/image-20200511105706702.png" alt="image-20200511105706702" style="zoom:80%;" />
+
+#### 5. SMS 전송 부분
+
+응급환자가 발생한 경우 네이버 클라우드 플랫폼의 SMS API를 사용하여 관리자에게 SMS를 전송하도록 구현하였다. 
+
+<img src="images/README/image-20200511105914453.png" alt="image-20200511105914453" style="zoom:80%;" />
+
+실제 결과는 다음과 같다.
+
+<img src="images/README/image-20200511105937624.png" alt="image-20200511105937624" style="zoom:80%;" />
+
+### 시스템 시연
+
+시스템 구현시 동작절차는 우선 쓰러진 사람을 객체인식을 통해 찾고 쓰러진사람이 발견될 경우 10초동안 카운트를 증가시킨다. 10초 동안 계속 발견될 경우 SMS API를 통해 관리자에게 해당 내용을 전파하게 된다.
+
+<img src="images/README/image-20200511110348999.png" alt="image-20200511110348999" style="zoom:80%;" />
+
+<img src="images/README/image-20200511110506078.png" alt="image-20200511110506078" style="zoom:80%;" />
