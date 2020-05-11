@@ -147,8 +147,8 @@ def send_esms():
     today = time.strftime('%Y년 %m월 %d일', time.localtime(time.time()))
     cur_time = time.strftime('%H시 %M분 %S초', time.localtime(time.time()))
     today_cur_time = today + '\n' + cur_time
-    send_phonenum = '01036900941'  # 보내는사람 번호
-    recv_phonenum = ['01036900941']  # 받는사람 번호 리스트형식으로 작성
+    send_phonenum = 'yourphone'  # 보내는사람 번호
+    recv_phonenum = ['sendphone']  # 받는사람 번호 리스트형식으로 작성
     result = send_sms.send_msg(send_phonenum, recv_phonenum, today_cur_time)
     print(f"result : {result}")
 
