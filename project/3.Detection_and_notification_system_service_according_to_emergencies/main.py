@@ -34,32 +34,41 @@ def view_info2():
 # 브라우져 화면에 나타나는 내용이 지속적으로 변하게 가능
 
 
-def generate1():  # 원본 영상을 송출하기 위한 함수
+# 원본 영상을 송출하기 위한 함수
+def generate1():
+    #init시 생성된 Queue 변수 호출 
     global w2
     while True:
-        frame = w2.get()  # Queue에 저장된 원본 프레임 호출
+        # Queue에 저장된 원본 프레임 호출
+        frame = w2.get()  
 
+        # Queue에 저장된 프레임이 없는 경우 continue
         if frame is None:
             continue
+
+        #원본 frame 복사 후 640x640 으로 리사이즈
         cpy_frame = frame.copy()
         cpy_frame = cv2.resize(cpy_frame, (640, 640))
 
         # JPEG 형식으로 인코딩
         (flag, encodedImage) = cv2.imencode(".jpg", cpy_frame)
 
-        # 인코딩 성공적으로 되었는지 확인
+        # 인코딩이 성공적으로 되었는지 확인
         if not flag:
             continue
+
         # yield the output frame in the byte format
-        # byte 타입의 str형식으로 처리되는 프레임마다 반환
+        # 매 프레임마다 str - > byte 포멧 형식으로 변환 후 yield를 통해 반환
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
                bytearray(encodedImage) + b'\r\n')
 
-
-def generate2():  # 인식결과에 대한 영상을 송출하기 위한 함수
+# 인식결과에 대한 영상을 송출하기 위한 함수
+def generate2():
+    #init시 생성된 Queue 변수 호출
     global w3
     while True:
-        frame = w3.get()  # Queue에 저장된 인식결과 프레임 호출
+        # 인식결과 프레임이 저장된 Queue 호출
+        frame = w3.get()  
         if frame is None:
             continue
 
@@ -78,30 +87,48 @@ def generate2():  # 인식결과에 대한 영상을 송출하기 위한 함수
         yield (b'--frame\r\n' b'Content-Type: image/jpeg\r\n\r\n' +
                bytearray(encodedImage) + b'\r\n')
 
-
+# 프레임 생성 ,q = w1 ,q2 = w2
 def create_frame(input_image, q, q2):
+    # 영상파일 호출, 실시간일 경우 0
     video = cv2.VideoCapture(input_image)
     i = 0
+    # Loop
     while True:
+        # read함수를 통해 프레임 호출
         hasFrame, frame = video.read()
-        q2.put(frame)  # 원본영상 웹 송출용 Queue
-        # print(f"process...index : {i}")
+        # 프레임을 q2(원본영상을 웹에 송출하기위한 Queue, w2)에 input
+        q2.put(frame)
+
+        #영상이 끝난경우 종료
         if frame is -1:
             break
+        
+        #프레임이 없는경우 종료
         if not hasFrame:
             print("process...end")
             break
-        else:  # 프레임 있을경우 영상 처리
+
+        # 프레임 있을경우 영상 처리
+        else: 
+            #딜레이
             time.sleep(0.03)
-            if i % 50 == 0:  # 50프레임당 Queue input
-                q.put(frame)  # 응급환자 발생여부를 위한 Queue
+
+            # 50프레임(약1.5초 주기)당 실행
+            if i % 50 == 0:  
+                # 응급환자 발생여부를 판독하기 위한 q(w1)에 input
+                q.put(frame)  
                 print("------------------------------------")
                 print(f"Process {i} FRAMES")
         i += 1
+    # 종료 후 객체 close
     video.release()
     cv2.destroyAllWindows()
 
 
+
+# frame 처리 ,q = w1 ,q2 = w3
+# w1에 프레임이 있는 경우에만 처리됨
+# 응급환자 발생여부를 판독하기 위한 프레임이 있을경우 처리
 def processing_frame(mode, q, q2):
     while True:
         global fainting_count
@@ -154,26 +181,45 @@ def send_esms():
 
 
 if __name__ == "__main__":
+    #main.py 실행시 옵션을 설정할 수 있도록 argparse 객체 지정 
     parser = argparse.ArgumentParser()
+
+    #main.py 실행시 추가적으로 줄 수 있는 인자값 설정
+    #-i 옵션을 통해 image 또는 video 호출 가능, default 값으로 'videos/20200424_1.mp4'가 지정됨
     parser.add_argument('-i', '--image', type=str, default='videos/20200424_1.mp4', help='input image or video')
+    #-m 옵션을 통해 객체인식 모드를 지정가능, yolo 모드와 openpose 모드를 지정할 수 있으며 default 값으로 'yolo'가 지정됨
     parser.add_argument('-m', '--mode', type=str, default='yolo', help='choice "yolo" or "openpose"')
+    #인자값을 사용하기 위한 객체 지정
     args = parser.parse_args()
+    #이미지 관련 인자값에 대해 저장
     input_image = args.image
+    #인식관련 인자값에 대해 저장
     mode = args.mode
 
+    
     print("Main status")
-    w1 = Queue()  # 프로세스 간 데이터를 주고받기 위한 큐 할당
+
+    # 프로세스 간 데이터를 주고받기 위한 큐 할당
+    w1 = Queue()  
     w2 = Queue()
     w3 = Queue()
-    fainting_count = [0] * 10
     print("Queue Ready")
-    p1 = Process(target=create_frame, args=(input_image, w1, w2))  # 각 프로세스에 해당 함수 작동하도록 설정
+
+    #응급환자 발생 수를 저장하기 위한 배열(Queue) 설정
+    fainting_count = [0] * 10
+    
+    # 각 프로세스별로 함수 작동하도록 설정(병렬처리)
+    p1 = Process(target=create_frame, args=(input_image, w1, w2))  
     p2 = Process(target=processing_frame, args=(mode, w1, w3))
+
+    #프로세스 가동
     p1.start()
     print("process 1 start")
     p2.start()
     print("process 2 start")
     print("Process Ready")
+
+    #플라스크 웹 서버 실행
     app.run(host='0.0.0.0', port=8992, debug=True, threaded=True, use_reloader=False)
     print("app start")
 
