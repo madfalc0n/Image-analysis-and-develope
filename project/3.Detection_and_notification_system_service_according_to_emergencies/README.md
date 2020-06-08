@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # 객체 인식을 통한 응급상황 발생 감지 및 알람기능 서비스
+=======
+# 객체 인식을 통해 심정지 환자 발생 감지 및 알람기능 서비스
+>>>>>>> 06a13f47bfd21594f779ab83b33d543ebf3c710d
 
 ## 1. 선정배경
 
@@ -50,25 +54,27 @@
 
 구현 범위를 위 대로 정할 경우 몇가지 문제를 생각했었다. 
 
-### 실시간으로 처리할 수 없는 알고리즘
+### 예상되는 문제점
+
+#### 실시간으로 처리할 수 없는 알고리즘
 
 첫번째로 응급상황이 발생하는 즉시 관리자에게 신속하게 알려줘야 하므로 **실시간**으로 객체를 인식하고 응급상황인지를 빠른시간내에 처리를 해주어야 한다는 점이다. 사람을 인식하고 쓰러졌는지 판단하는데 걸리는 시간은 한 프레임당 대략 0.03초 정도 내로 이루어 져야 한다(일반적으로 보통 초당 30 프레임이라고 하니 즉 한 프레임당 0.03초 내로 처리해야한다는 말).
 
 실제로 나는 객체 인식과 포즈 추정 알고리즘을 구현하여 직접 돌려보고 걸리는 시간을 측정해보았는데 객체 인식(YOLO v3)의 경우 CPU(AMD FX-8300, 인텔 i5급 성능)로 처리할 경우 1~3초, GPU(Tesla T4)는  0.1 ~ 0.3 초정도 걸렸고 포즈 추정(OPENPOSE)의 경우 CPU로만 처리했을때 10초 정도 걸렸다. 포즈 추정에서 사람의 키포인트를 모두 추정 후 키포인트간의 상관관계를 분석하여 포즈를 추정하는 방식인 `bottom-up`방식을 통해 구현했다면 따로 detection 과정을 거치지 않게 되어 빨라질거란 얘기가 있지만 따로 구성환경이 좋지못해 적용해보지 못하였다.
 
-### 쓰러진 사람은 사람인가 사물인가(+학습 데이터의 부족)?
+#### 쓰러진 사람은 사람인가 사물인가(+학습 데이터의 부족)?
 
 일반적인 사람에 대한 이미지는 많으나 실제 길에 누워있거나 쓰러진 사람들에 대한 이미지 셋은 인터넷에서 찾기가 어려웠다. 실제 객체 인식 오픈소스 중 하나인 `Darknet`을 이용해 학습된 weight로 쓰러진 사람에 대해 인식을 시도하였으나 시도하지 못했는데 현재 공공장소에 설치된 CCTV들의 저급한 화질로 인해 객체를 구분하지 못하는 것으로 생각된다(+쓰러진사람에 대한 학습). 
 
 <img src="images/README/image-20200314020916377.png" alt="image-20200314020916377" style="zoom:80%;" />
 
-### 알람메시지 서비스 관련
+#### 알람메시지 서비스 관련
 
 우선 관리자들이 응급상황을 편리하게 볼수 있도록 카카오챗봇을 선정하였으나 푸시메시지 발송관련해서 유료서비스로 제공한다는 것을 보게되었다. 그래서 문자SMS를 통해 알람을 전달하기로 진행했고 네이버 클라우드 플랫폼에서 제공하는 SMS API를 사용하게 되었다.
 
 
 
-### 결론?
+#### 결론
 
 아무래도 실시간으로 처리해야 하다보니 알고리즘이 많이 가벼워야 하기에 "객체 인식과 포즈 추정 둘다 해야 할까?" 라는 생각을 하게 되었다. 한참 생각하다보니  `쓰러진사람`을 하나의 클래스로 정한다면 따로 포즈 추정없이 객체 인식만 이용하면 될 것 같다는 생각을 하였다. 
 
@@ -105,7 +111,7 @@
 
 ### 활동 별 차트
 
-<img src="images/README/image-20200409111915115.png" alt="image-20200409111915115" style="zoom:80%;" />
+<img src="images/README/image-20200606095342359.png" alt="image-20200606095342359" />
 
 
 
@@ -241,13 +247,17 @@ YOLO v3에서 default 클래스 수는 총 80개로 커널 사이즈는 1 x 1 x 
 
 <img src="images/README/image-20200511104312019.png" alt="image-20200511104312019" style="zoom:80%;" />
 
+<img src="images/README/image-20200606094629680.png" alt="image-20200606094629680" style="zoom:80%;" />
+
+
+
 ### 간략한 코드리뷰
 
 #### 1. 병렬처리를 위한 init 부분
 
 먼저 Flask WEB server에서는 멀티프로세싱과 큐를 이용하여 영상송출(create_frame)부분과 응급환자 인식(processing_frame)기능이 동시에 처리되도록 구현하였다. 이는 객체인식을 수행하는 부분에서 시스템 성능상의 문제로 지연이 발생하는 것을 줄이기 위함이다.
 
-<img src="images/README/image-20200511104742596.png" alt="image-20200511104742596" style="zoom:80%;" />
+<img src="images/README/image-20200606094652560.png" alt="image-20200606094652560" style="zoom:80%;" />
 
 #### 2. 영상송출 부분 및 응급상황 인식 부분
 
@@ -255,7 +265,7 @@ YOLO v3에서 default 클래스 수는 총 80개로 커널 사이즈는 1 x 1 x 
 
 2. **processing_frame** 함수에서 1번과정을 통해 Queue에 저장된 프레임을 호출하고 객체 인식(YOLO)을 이용하여 응급환자 발생여부를 확인한다.
 
-<img src="images/README/image-20200511105001065.png" alt="image-20200511105001065" style="zoom:80%;" />
+<img src="images/README/image-20200606094756830.png" alt="image-20200606094756830" style="zoom:80%;" />
 
 #### 3. 객체 인식 부분
 
@@ -263,25 +273,23 @@ YOLO v3에서 default 클래스 수는 총 80개로 커널 사이즈는 1 x 1 x 
 
 2. **processing_frame**에서 받아온 프레임을 네트워크에 입력하고 얻은 결과 정보를 **postprocess** 함수에서 추출한다.
 
-<img src="images/README/image-20200511105151274.png" alt="image-20200511105151274" style="zoom:80%;" />
+<img src="images/README/image-20200606094818584.png" alt="image-20200606094818584" style="zoom:80%;" />
 
 3.  **posetprocess** 함수에서 YOLO를 통해 인식된 결과를 설정한 값(Confidence threshold, Non-maximum suppression threshold)을 기준으로 분류한다.(쓰러진 사람인지 아닌지 분류)
 
 4.  쓰러진 사람이 발견될 경우 **drawPred** 함수에서 쓰러진 사람에 대한 Bounding box를 표시한다.
 
-<img src="images/README/image-20200511105313630.png" alt="image-20200511105313630" style="zoom:80%;" />
+<img src="images/README/image-20200606094932039.png" alt="image-20200606094932039" style="zoom:80%;" />
 
 #### 4. WEB 부분
 
 1.  사용자가 웹 호출 시 **templates** 폴더에 저장된 **index.html**를 리턴하도록 설정하였다. index.html을 호출하게 되면 **/view_info1**, **/view_info2**를 자동으로 호출하게 되는데 이는 원본영상과 객체 인식 후의 영상을 송출하게 된다.
 
-   <img src="images/README/image-20200511105601012.png" alt="image-20200511105601012" style="zoom:80%;" />
-
-   <img src="images/README/image-20200511105547225.png" alt="image-20200511105547225" style="zoom:80%;" />
+   <img src="images/README/image-20200606095016131.png" alt="image-20200606095016131" style="zoom:80%;" />
 
 2.  **generate1/2** 함수에서 실시간으로 처리되는 프레임을 반환하여 웹에서 영상처럼 확인가능하도록 구현하였다.
 
-<img src="images/README/image-20200511105612429.png" alt="image-20200511105612429" style="zoom:80%;" />
+<img src="images/README/image-20200606095109425.png" alt="image-20200606095109425" style="zoom:80%;" />
 
 3. 실제 사용자가 index.html을 호출하면 다음과 같이 확인하게 된다.
 
@@ -291,7 +299,7 @@ YOLO v3에서 default 클래스 수는 총 80개로 커널 사이즈는 1 x 1 x 
 
 응급환자가 발생한 경우 네이버 클라우드 플랫폼의 SMS API를 사용하여 관리자에게 SMS를 전송하도록 구현하였다. 
 
-<img src="images/README/image-20200511105914453.png" alt="image-20200511105914453" style="zoom:80%;" />
+<img src="images/README/image-20200606095251051.png" alt="image-20200606095251051" style="zoom:80%;" />
 
 실제 결과는 다음과 같다.
 
@@ -303,4 +311,4 @@ YOLO v3에서 default 클래스 수는 총 80개로 커널 사이즈는 1 x 1 x 
 
 <img src="images/README/image-20200511110348999.png" alt="image-20200511110348999" style="zoom:80%;" />
 
-<img src="images/README/image-20200511110506078.png" alt="image-20200511110506078" style="zoom:80%;" />
+<img src="images/README/image-20200511110506078.png" alt="image-20200606095342359" style="zoom:80%;" />
